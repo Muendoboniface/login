@@ -9,22 +9,19 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-image: url('ground.jpeg');
-            background-repeat: no-repeat;
+            background-image: url('bg.avif');
             background-size: cover;
-            background-attachment: fixed;
-            height: 100vh;
-            width: 100%;
+            background-repeat: no-repeat;
+
         }
 
         .container {
             text-align: center;
-            margin-top: 5%;
+            margin-top: 10%;
         }
 
         #buttons {
             background-color: #fff;
-            border-radius: 10px;
             padding: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
             display: inline-block;
@@ -67,7 +64,7 @@
             margin-left: -30px;
             cursor: pointer;
         }
-                .modal-content {
+        .modal-content {
             background-color: #fff;
             width: 300px;
             margin: 100px auto;
@@ -87,8 +84,9 @@
             font-weight: bolder;
         }
 
-        .close:hover,
-        .close:focus {
+       .close:hover,
+        .close:focus{
+            content: "";
             color: red;
             cursor: pointer;
         }
@@ -98,6 +96,13 @@
         .cancelbtn:hover{
             background-color: rgb(236, 12, 12);
         }
+       @media screen and (max-width:900px){
+        .container{
+            width: 50%;
+            position: relative;
+            left: 20%;
+        }
+       }
     </style>
 </head>
 <body>
@@ -115,17 +120,18 @@
             
                 <form class="container" action="#" method="post">
                     <div class="modal-content animate">
-                        <span class="close" id="closeLoginModal" title="Close Modal">&times;</span>
+                        <span class="close" id="closeLoginModal" onclick="clearFields()" title="Close Modal">&times;</span>
                         <div class="img_container">
                             <img src="avatar.jpeg" class="avatar" alt="Avatar icon">
                         </div>
                     <label for="uname"><b>Username</b></label><br>
-                    <input type="text" placeholder="Enter username" name="uname" required><br><br>
+                    <input type="text" placeholder="Enter username" id="uname" required><br><br>
                 
                     <p>
-                        <label for="password">Password:</label>
-                        <input type="password" name="password" id="password" />
+                        <label for="password"><b>Password</b></label><br>
+                         <input type="password" name="password" id="password" placeholder="********"/>
                         <i class="bi bi-eye-slash" id="togglePassword"></i>
+                          
                     </p>
 
                     <button type="submit">Login</button><br>
@@ -135,13 +141,20 @@
                     </label>
                 </form>
                 <div class="container" style="background-color:#cabcbc">
-                    <button id="cancelLoginButton" class="cancelbtn">Cancel</button>
+                    <button id="cancelLoginButton"  class="cancelbtn" onclick="clearFields()">Cancel</button>
                     <span class="psw">Forgot <a href="#">password?</a></span>
                 </div>
             </div>
         </div>
 
         <script>
+            function clearFields(){
+                document.getElementById('uname').value = ' ';
+                document.getElementById('password').value = ' ';
+                document.getElementById('name').value = ' ';
+                document.getElementById('email').value = ' ';
+            }
+
             var loginModal = document.getElementById('loginModal');
             var openLoginButton = document.getElementById('openLoginButton');
             var closeLoginModal = document.getElementById('closeLoginModal');
@@ -177,21 +190,21 @@
         <div id="signModal" class="modal">
             <form class="container" action="#" method="post">
                 <div class="modal-content animate">
-                    <span class="close" id="closeSignModal" title="Close Modal">&times;</span>
+                    <span class="close" id="closeSignModal" onclick="clearFields()" title="Close Modal">&times;</span>
                     <div class="img_container">
                         <img src="sign.png" class="avatar" alt="Avatar icon">
                     </div>
                 <label for="name"><b>FullName</b></label> <br>
-                <input type="text" placeholder="Full Name" name="name" required> <br><br>
+                <input type="text" placeholder="Full Name" id="name" required> <br><br>
 
                 <label for="uname"><b>Username</b></label><br>
-                <input type="text" placeholder="Enter username" name="uname" required><br><br>
+                <input type="text" placeholder="Enter username" id="uname" required><br><br>
                 
                 <label for="email"><b>Email</b></label><br>
-                <input type="email" name="email" placeholder="Email" required><br><br>
+                <input type="email" name="email" placeholder="Email" id="email" required><br><br>
 
                 <label for="psw"><b>Password</b></label><br>
-                <input type="password" placeholder="Password" name="psw" required>
+                <input type="password" placeholder="Password" id="password" required>
 
                 <button type="submit">SIGN UP</button><br>
 
