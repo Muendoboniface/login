@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
-    <meta name = "author" content = "BONIFACE MUENDO">
+    <meta name="author" content="BONIFACE MUENDO">
     <title>Welcome Page</title>
     <style>
         body {
@@ -35,7 +36,7 @@
             margin-top: 20px;
         }
 
-        button{
+        button {
             background-color: #4CAF50;
             color: white;
             padding: 14px 20px;
@@ -49,6 +50,7 @@
         button:hover {
             background-color: rgb(65, 65, 232);
         }
+
         .modal {
             display: none;
             position: fixed;
@@ -60,10 +62,12 @@
             background-color: rgba(0, 0, 0, 0.5);
             overflow: scroll;
         }
+
         form>p>i {
             margin-left: -30px;
             cursor: pointer;
         }
+
         .modal-content {
             background-color: #fff;
             width: 300px;
@@ -72,10 +76,12 @@
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         }
-        .avatar{
+
+        .avatar {
             width: 40%;
             border-radius: 50%;
         }
+
         .close {
             position: relative;
             float: right;
@@ -84,27 +90,31 @@
             font-weight: bolder;
         }
 
-       .close:hover,
-        .close:focus{
+        .close:hover,
+        .close:focus {
             content: "";
             color: red;
             cursor: pointer;
         }
-        .cancelbtn{
+
+        .cancelbtn {
             background-color: rgb(146, 81, 81);
         }
-        .cancelbtn:hover{
+
+        .cancelbtn:hover {
             background-color: rgb(236, 12, 12);
         }
-       @media screen and (max-width:900px){
-        .container{
-            width: 50%;
-            position: relative;
-            left: 20%;
+
+        @media screen and (max-width:900px) {
+            .container {
+                width: 50%;
+                position: relative;
+                left: 20%;
+            }
         }
-       }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div id="buttons">
@@ -117,21 +127,21 @@
         </div>
 
         <div id="loginModal" class="modal">
-            
-                <form class="container" action="#" method="post">
-                    <div class="modal-content animate">
-                        <span class="close" id="closeLoginModal" onclick="clearFields()" title="Close Modal">&times;</span>
-                        <div class="img_container">
-                            <img src="avatar.jpeg" class="avatar" alt="Avatar icon">
-                        </div>
+
+            <form class="container" action="#" method="post">
+                <div class="modal-content animate">
+                    <span class="close" id="closeLoginModal" onclick="clearFields()" title="Close">&times;</span>
+                    <div class="img_container">
+                        <img src="avatar.jpeg" class="avatar" alt="Avatar icon">
+                    </div>
                     <label for="uname"><b>Username</b></label><br>
                     <input type="text" placeholder="Enter username" id="uname" required><br><br>
-                
+
                     <p>
                         <label for="password"><b>Password</b></label><br>
-                         <input type="password" name="password" id="password" placeholder="********"/>
+                        <input type="password" name="password" id="password" placeholder="********" />
                         <i class="bi bi-eye-slash" id="togglePassword"></i>
-                          
+
                     </p>
 
                     <button type="submit">Login</button><br>
@@ -139,67 +149,67 @@
                     <label>
                         <input type="checkbox" checked="true" name="remember">Remember me
                     </label>
-                </form>
-                <div class="container" style="background-color:#cabcbc">
-                    <button id="cancelLoginButton"  class="cancelbtn" onclick="clearFields()">Cancel</button>
-                    <span class="psw">Forgot <a href="#">password?</a></span>
-                </div>
+            </form>
+            <div class="container" style="background-color:#cabcbc">
+                <button id="cancelLoginButton" class="cancelbtn" onclick="clearFields()">Cancel</button>
+                <span class="psw">Forgot <a href="#">password?</a></span>
             </div>
         </div>
+    </div>
 
-        <script>
-            function clearFields(){
-                document.getElementById('uname').value = ' ';
-                document.getElementById('password').value = ' ';
-                document.getElementById('name').value = ' ';
-                document.getElementById('email').value = ' ';
-            }
+    <script>
+        function clearFields() {
+            document.getElementById('uname').value = ' ';
+            document.getElementById('password').value = ' ';
+            document.getElementById('name').value = ' ';
+            document.getElementById('email').value = ' ';
+        }
 
-            var loginModal = document.getElementById('loginModal');
-            var openLoginButton = document.getElementById('openLoginButton');
-            var closeLoginModal = document.getElementById('closeLoginModal');
-            var cancelLoginButton = document.getElementById('cancelLoginButton');
+        var loginModal = document.getElementById('loginModal');
+        var openLoginButton = document.getElementById('openLoginButton');
+        var closeLoginModal = document.getElementById('closeLoginModal');
+        var cancelLoginButton = document.getElementById('cancelLoginButton');
 
-            openLoginButton.onclick = function () {
-                loginModal.style.display = 'block';
-            }
+        openLoginButton.onclick = function () {
+            loginModal.style.display = 'block';
+        }
 
-            closeLoginModal.onclick = function () {
+        closeLoginModal.onclick = function () {
+            loginModal.style.display = 'none';
+        }
+
+        cancelLoginButton.onclick = function () {
+            loginModal.style.display = 'none';
+        }
+
+        window.onclick = function (event) {
+            if (event.target == loginModal) {
                 loginModal.style.display = 'none';
             }
+        }
+        const togglePassword = document.querySelector('#togglePassword');
+        const password = document.querySelector('#password');
+        togglePassword.addEventListener('click', function (e) {
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            this.classList.toggle('bi-eye');
+        });
+    </script>
 
-            cancelLoginButton.onclick = function () {
-                loginModal.style.display = 'none';
-            }
-
-            window.onclick = function (event) {
-                if (event.target == loginModal) {
-                    loginModal.style.display = 'none';
-                }
-            }
-            const togglePassword = document.querySelector('#togglePassword');
-            const password = document.querySelector('#password');
-            togglePassword.addEventListener('click', function (e) {
-                const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-                password.setAttribute('type', type);
-                this.classList.toggle('bi-eye');
-            });
-        </script>
-
-        <!-- //sign up -->
-        <div id="signModal" class="modal">
-            <form class="container" action="#" method="post">
-                <div class="modal-content animate">
-                    <span class="close" id="closeSignModal" onclick="clearFields()" title="Close Modal">&times;</span>
-                    <div class="img_container">
-                        <img src="sign.png" class="avatar" alt="Avatar icon">
-                    </div>
+    <!-- //sign up -->
+    <div id="signModal" class="modal">
+        <form class="container" action="#" method="post">
+            <div class="modal-content animate">
+                <span class="close" id="closeSignModal" onclick="clearFields()" title="Close">&times;</span>
+                <div class="img_container">
+                    <img src="sign.png" class="avatar" alt="Avatar icon">
+                </div>
                 <label for="name"><b>FullName</b></label> <br>
                 <input type="text" placeholder="Full Name" id="name" required> <br><br>
 
                 <label for="uname"><b>Username</b></label><br>
                 <input type="text" placeholder="Enter username" id="uname" required><br><br>
-                
+
                 <label for="email"><b>Email</b></label><br>
                 <input type="email" name="email" placeholder="Email" id="email" required><br><br>
 
@@ -208,8 +218,8 @@
 
                 <button type="submit">SIGN UP</button><br>
 
-            </form>
-        </div>
+        </form>
+    </div>
     </div>
 
     <script>
@@ -230,8 +240,9 @@
                 signModal.style.display = 'none';
             }
         }
-    </script>            
-        </div>
+    </script>
+    </div>
     </div>
 </body>
+
 </html>
