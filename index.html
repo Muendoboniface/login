@@ -117,131 +117,142 @@
 
 <body>
     <div class="container">
-        <div id="buttons">
-            <h2>Great! Welcome</h2>
-            <p>Press any of the buttons below to access the signup or login form.</p>
-            <div id="tabs">
-                <button id="openSignButton" class="sbtn">SIGN UP</button>
-                <button id="openLoginButton" class="lbtn">LOGIN</button>
+            <div id="buttons">
+                <h2>Great! Welcome</h2>
+                <p>Press any of the buttons below to access the signup or login form.</p>
+                <div id="tabs">
+                    <button id="openSignButton" class="sbtn">SIGN UP</button>
+                    <button id="openLoginButton" class="lbtn">LOGIN</button>
+                </div>
             </div>
-        </div>
 
-        <div id="loginModal" class="modal">
+            <div id="loginModal" class="modal">
 
-            <form class="container" action="#" method="post">
-                <div class="modal-content animate">
-                    <span class="close" id="closeLoginModal" onclick="clearFields()" title="Close">&times;</span>
-                    <div class="img_container">
-                        <img src="avatar.jpeg" class="avatar" alt="Avatar icon">
+                <form class="container" action="#" method="post">
+                    <div class="modal-content animate">
+                        <span class="close" id="closeLoginModal" onclick="clearFields()" title="Close">&times;</span>
+                        <div class="img_container">
+                            <img src="avatar.jpeg" class="avatar" alt="Avatar icon">
+                        </div>
+                        <label for="uname"><b>Username</b></label><br>
+                        <input type="text" placeholder="Enter username" id="uname" name="uname" required><br><br>
+
+                        <p>
+                            <label for="password"><b>Password</b></label><br>
+                            <input type="password" name="password" id="password" name="password" placeholder="********" required/>
+                            <i class="bi bi-eye-slash" id="togglePassword"></i>
+
+                        </p>
+
+                        <button type="submit">Login</button><br>
+
+                        <label>
+                            <input type="checkbox" checked="true" name="remember">Remember me
+                        </label>
+                        <div class="container" style="background-color:#cabcbc">
+                    <button id="cancelLoginButton" class="cancelbtn" onclick="clearFields()">Cancel</button>
+                    <span class="psw">Forgot <a href="#">password?</a></span>
+                </div>
                     </div>
-                    <label for="uname"><b>Username</b></label><br>
-                    <input type="text" placeholder="Enter username" id="uname" required><br><br>
-
-                    <p>
-                        <label for="password"><b>Password</b></label><br>
-                        <input type="password" name="password" id="password" placeholder="********" />
-                        <i class="bi bi-eye-slash" id="togglePassword"></i>
-
-                    </p>
-
-                    <button type="submit">Login</button><br>
-
-                    <label>
-                        <input type="checkbox" checked="true" name="remember">Remember me
-                    </label>
-            </form>
-            <div class="container" style="background-color:#cabcbc">
-                <button id="cancelLoginButton" class="cancelbtn" onclick="clearFields()">Cancel</button>
-                <span class="psw">Forgot <a href="#">password?</a></span>
+                </form>
+                
             </div>
         </div>
-    </div>
 
-    <script>
-        function clearFields() {
-            document.getElementById('uname').value = ' ';
-            document.getElementById('password').value = ' ';
-            document.getElementById('name').value = ' ';
-            document.getElementById('email').value = ' ';
-        }
+        <script>
+            function clearFields() {
+                document.querySelectorAll('form>div > #uname').forEach(element => {
+                    element.value = '';
+                });
+                document.querySelectorAll('form>div > #password').forEach(element => {
+                    element.value = '';
+                });
+                document.getElementById('uname').value = '';
+                document.getElementById('password').value = '';
+                document.getElementById('name').value = '';
+                document.getElementById('email').value = '';
+            }
 
-        var loginModal = document.getElementById('loginModal');
-        var openLoginButton = document.getElementById('openLoginButton');
-        var closeLoginModal = document.getElementById('closeLoginModal');
-        var cancelLoginButton = document.getElementById('cancelLoginButton');
+            var loginModal = document.getElementById('loginModal');
+            var openLoginButton = document.getElementById('openLoginButton');
+            var closeLoginModal = document.getElementById('closeLoginModal');
+            var cancelLoginButton = document.getElementById('cancelLoginButton');
 
-        openLoginButton.onclick = function () {
-            loginModal.style.display = 'block';
-        }
+            openLoginButton.onclick = function () {
+                loginModal.style.display = 'block';
+            }
 
-        closeLoginModal.onclick = function () {
-            loginModal.style.display = 'none';
-        }
-
-        cancelLoginButton.onclick = function () {
-            loginModal.style.display = 'none';
-        }
-
-        window.onclick = function (event) {
-            if (event.target == loginModal) {
+            closeLoginModal.onclick = function () {
+                clearFields();
                 loginModal.style.display = 'none';
             }
-        }
-        const togglePassword = document.querySelector('#togglePassword');
-        const password = document.querySelector('#password');
-        togglePassword.addEventListener('click', function (e) {
-            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-            password.setAttribute('type', type);
-            this.classList.toggle('bi-eye');
-        });
-    </script>
 
-    <!-- //sign up -->
-    <div id="signModal" class="modal">
-        <form class="container" action="#" method="post">
-            <div class="modal-content animate">
-                <span class="close" id="closeSignModal" onclick="clearFields()" title="Close">&times;</span>
-                <div class="img_container">
-                    <img src="sign.png" class="avatar" alt="Avatar icon">
-                </div>
-                <label for="name"><b>FullName</b></label> <br>
-                <input type="text" placeholder="Full Name" id="name" required> <br><br>
+            cancelLoginButton.onclick = function () {
+                clearFields();
+                loginModal.style.display = 'none';
+            }
 
-                <label for="uname"><b>Username</b></label><br>
-                <input type="text" placeholder="Enter username" id="uname" required><br><br>
+            window.onclick = function (event) {
+                if (event.target == loginModal) {
+                    loginModal.style.display = 'none';
+                }
+            }
+            const togglePassword = document.querySelector('#togglePassword');
+            const password = document.querySelector('#password');
+            togglePassword.addEventListener('click', function (e) {
+                const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+                password.setAttribute('type', type);
+                this.classList.toggle('bi-eye');
+            });
+        </script>
 
-                <label for="email"><b>Email</b></label><br>
-                <input type="email" name="email" placeholder="Email" id="email" required><br><br>
+        <!-- //sign up -->
+        <div id="signModal" class="modal">
+            <form class="container" action="#" method="post">
+                <div class="modal-content animate">
+                    <span class="close" id="closeSignModal" onclick="clearFields()" title="Close">&times;</span>
+                    <div class="img_container">
+                        <img src="sign.png" class="avatar" alt="Avatar icon">
+                    </div>
+                    <label for="name"><b>FullName</b></label> <br>
+                    <input type="text" placeholder="Full Name" id="name" name="name"> <br><br>
 
-                <label for="psw"><b>Password</b></label><br>
-                <input type="password" placeholder="Password" id="password" required>
+                    <label for="uname"><b>Username</b></label><br>
+                    <input type="text" placeholder="Enter username" name="uname" id="uname" ><br><br>
 
-                <button type="submit">SIGN UP</button><br>
+                    <label for="email"><b>Email</b></label><br>
+                    <input type="email" name="email" placeholder="Email" id="email"><br><br>
 
-        </form>
-    </div>
-    </div>
+                    <label for="psw"><b>Password</b></label><br>
+                    <input type="password" placeholder="Password" name="password" id="password" >
 
-    <script>
-        var signModal = document.getElementById('signModal');
-        var openSignButton = document.getElementById('openSignButton');
-        var closeSignModal = document.getElementById('closeSignModal');
+                    <button type="submit">SIGN UP</button><br>
 
-        openSignButton.onclick = function () {
-            signModal.style.display = 'block';
-        }
+            </form>
+        </div>
+        </div>
 
-        closeSignModal.onclick = function () {
-            signModal.style.display = 'none';
-        }
+        <script>
+            var signModal = document.getElementById('signModal');
+            var openSignButton = document.getElementById('openSignButton');
+            var closeSignModal = document.getElementById('closeSignModal');
 
-        window.onclick = function (event) {
-            if (event.target == signModal) {
+            openSignButton.onclick = function () {
+                signModal.style.display = 'block';
+            }
+
+            closeSignModal.onclick = function () {
+                clearFields();
                 signModal.style.display = 'none';
             }
-        }
-    </script>
-    </div>
+
+            window.onclick = function (event) {
+                if (event.target == signModal) {
+                    signModal.style.display = 'none';
+                }
+            }
+        </script>
+        </div>
     </div>
 </body>
 
